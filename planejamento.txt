@@ -1,0 +1,20 @@
+-  Homepage
+- Fazer Login e Criar Conta (Usuário e Autenticação)
+    - Email
+    - Username
+    - Senha
+    - Curso visto
+    - Editar Pefil
+
+- Curso
+    - thumb(imagem)
+    - titulo
+    - descrição
+    - categoria
+    - quantidade de views
+    - data de criação
+    - Episodios
+        - videos
+        - titulo
+
+- Barra de Pesquisa
