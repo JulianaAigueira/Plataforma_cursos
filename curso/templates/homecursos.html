@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+HomeCursos Cursos online
+{% endblock %}
+
+{% block content %}
+<div class="py-12">
+    <h1>Essa é a nossa HomeCursos</h1>
+    {% for curso in lista_cursos %}
+    <hr>
+    <p>{{ curso }}</p>
+    <p>{{ curso.descricao }}</p>
+    <img src="{{ filme.thumb.url }}">
+    {% endfor %}
+</div>
+{% endblock %}
