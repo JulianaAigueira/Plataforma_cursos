@@ -7,11 +7,11 @@ HomeCursos Cursos online
 {% block content %}
 <div class="py-12">
     <h1>Essa é a nossa HomeCursos</h1>
-    {% for curso in lista_cursos %}
+    {% for curso in object_list %}
     <hr>
-    <p>{{ curso }}</p>
+    <a href="{% url 'curso:detalhescurso' curso.pk %}"><p>{{ curso.titulo }}</p></a>
     <p>{{ curso.descricao }}</p>
-    <img src="{{ filme.thumb.url }}">
+    <img src="{{ curso.thumb.url }}">
     {% endfor %}
 </div>
 {% endblock %}

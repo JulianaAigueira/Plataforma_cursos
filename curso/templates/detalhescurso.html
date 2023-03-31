@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+HomeCursos Cursos online
+{% endblock %}
+
+{% block content %}
+<div class="py-12">
+    <h1>Essa é o detalhe do curso: {{ object.titulo }}</h1>
+    <p>{{ object }}</p>
+    <p>{{ object.descricao }}</p>
+    <img src="{{ object.thumb.url }}">
+</div>
+{% endblock %}

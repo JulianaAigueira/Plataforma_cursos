@@ -15,7 +15,7 @@ LISTA_CATEGORIAS = (
 
 class Curso(models.Model):
     titulo = models.CharField(max_length=100)
-    thumb = models.ImageField(upload_to='thumb_filmes')
+    thumb = models.ImageField(upload_to='thumb_cursos')
     descricao = models.TextField(max_length=1000)
     categoria = models.CharField(max_length=20, choices=LISTA_CATEGORIAS)
     visualizacoes = models.IntegerField(default=0)
@@ -25,5 +25,13 @@ class Curso(models.Model):
         return self.titulo
 
 # criar os episodios
+class Episodio(models.Model):
+    curso = models.ForeignKey('Curso', related_name='episodios', on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=100)
+    video = models.URLField()
+
+    def __str__(self):
+        return self.curso.titulo + " - " + self.titulo
+
 
 #criar o usuário
