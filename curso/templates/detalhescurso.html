@@ -18,4 +18,15 @@ HomeCursos Cursos online
         {% endfor %}
 
 </div>
+
+<div class="py-10">
+    <h2>Filme Relacionados</h2>
+    {% for curso in cursos_relacionados %}
+    <p>
+        <a href="{% url 'curso:detalhescurso' curso.pk %}">
+            {{ curso.titulo }}
+        </a>
+    </p>
+    {% endfor %}
+</div>
 {% endblock %}
