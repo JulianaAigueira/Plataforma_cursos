@@ -29,6 +29,17 @@ class Detalhescurso(DetailView):
     model = Curso
     # object -> 1 item do nosso modelo
 
+    def get(self, request, *args, **kwargs):
+        # descobrir qual o curso ele está acessando
+        curso = self.get_object()
+        # somar 1 nas visualizações daquele cursos
+        curso.visualizacoes += 1
+        # salvar
+        curso.save()
+
+        return super().get(request, *args, **kwargs) # redireciona o usuario para a url final
+
+
     def get_context_data(self, **kwargs):
         context = super(Detalhescurso, self).get_context_data(**kwargs)
         #filtra a tabelas de cursos pegando os cursos cuja categoria é igual a categoria do filme da página (object)

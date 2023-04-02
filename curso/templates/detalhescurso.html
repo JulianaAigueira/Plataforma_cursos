@@ -9,6 +9,8 @@ HomeCursos Cursos online
     <h1>Essa é o detalhe do curso: {{ object.titulo }}</h1>
     <p>{{ object }}</p>
     <p>{{ object.descricao }}</p>
+    <p>Visualizações: {{ object.visualizacoes }}
+    </p>
     <img src="{{ object.thumb.url }}">
         <h2>Episódios</h2>
         {% for episodio in object.episodios.all %}
