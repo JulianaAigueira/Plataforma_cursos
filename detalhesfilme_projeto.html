@@ -1,23 +1,15 @@
-{% extends 'base.html' %}
-
-{% block titulo %}
-HomeCursos Cursos online
-{% endblock %}
-
-{% block content %}
-
 
     <main class='bg-primary_black min-h-screen w-full'>
-        <section class="h-screen relative bg-no-repeat pb-8 pl-6 flex  items-end bg-cover" style="background-image: url('{{ object.thumb.url }}');">
+        <section class="h-screen relative bg-no-repeat pb-8 pl-6 flex  items-end bg-cover" style="background-image: url('#');">
             <div>
                 <h2 class="text-6xl font-semibold text-white my-4">
-                    {{ object.titulo}}
+                    Titulo
                 </h2>
                 <p class=" w-11/12 md:w-5/12 font-medium text-white my-4">
-                    {{ object.descricao|slice:':50' }}...
+                    Descrição
                 </p>
                 <div class="flex my-4">
-                    <a href="{{ object.episodios.first.video }}">
+                    <a href="#">
                         <button class="flex items-center bg-white py-2 px-5 rounded-md" style='color:black;'>
                             <ion-icon name="play" class="text-2xl"></ion-icon>
                             <span class="ml-3 font-medium">
@@ -27,17 +19,16 @@ HomeCursos Cursos online
                     </a>
                 </div>
             </div>
-        </section>
+        </section> 
         <section class='bg-primary_black flex justify-center py-10'>
             <div class="p-8 w-10/12 relative" >
                 <h2 class="text-gray-200 text-3xl font-medium">
-                    Descrição
+                    Description
                 </h2>
                 <div class="flex justify-left  items-center min-w-full  movie_lis">
                     <p class="text-gray-100 text-lg">
-                        {{ object.descricao }}
-                        <br>
-                        Visualizações: {{ object.visualizacoes }}
+                        Descricao
+                        Visualizações:
                     </p>
                 </div>
 
@@ -46,13 +37,11 @@ HomeCursos Cursos online
                         Episódios
 
                     </h2>
-                    {%  for episodio in object.episodios.all %}
                         <h3 class='text-lg'>
-                            <a href="{{ episodio.video }}">
-                                <p>Episódio {{ forloop.counter}}: {{ episodio.titulo}}</p>
+                            <a href="#">
+                            Episódio
                             </a>
                         </h3>
-                    {% endfor %}
 
                 </div>
 
@@ -65,17 +54,15 @@ HomeCursos Cursos online
                     Relacionados
                 </h2>
                 <div class="flex flex-wrap items-center min-w-full movie_lis">
-                    {% for curso in cursos_relacionados %}
                     <div class="m-4 bg-blue-500 overflow-hidden flex-shrink-0 rounded-md cursor-pointer h-64 w-96">
-                        <a href="{% url 'curso:detalhescurso' curso.pk %}">
-                                <img src="{{ curso.thumb.url }}" class="object-cover w-full h-full " alt="">
+                        <a href="#">
+                                <img src="#" class="object-cover w-full h-full " alt="">
                         </a>
-                    </div>
-                    {% endfor %}
+                        </div>
                 </div>
             </div>
         </section>
-
+        
     </main>
 
-{% endblock %}
+
