@@ -91,16 +91,16 @@ h1 {
 
 
     <main class='bg-primary_black min-h-screen w-full'>
-        <section class="h-screen relative bg-no-repeat pb-8 pl-6 flex items-end bg-cover" style="background-image: url('{% static 'images/homepage.jpg' %}');">
+        <section class="h-screen relative bg-no-repeat pb-8 pl-6 flex items-end bg-cover" style="background-image: url('{{ curso_destaque.thumb.url }}');">
             <div>
                 <h2 class="text-6xl font-semibold text-white my-4">
-                    Titulo
+                    {{ curso_destaque.titulo }}
                 </h2>
                 <p class=" w-11/12 md:w-5/12 font-medium text-white my-4">
-                    Descrição
+                    {{ curso_destaque.descricao }}
                 </p>
                 <div class="flex my-4">
-                    <a href="#">
+                    <a href="{% url 'curso:detalhescurso' curso_destaque.pk %}">
                         <button class="flex items-center bg-white py-2 px-5 rounded-md" style='color:black;'>
                             <ion-icon name="play" class="text-2xl"></ion-icon>
                             <span class="ml-3 font-medium " >
