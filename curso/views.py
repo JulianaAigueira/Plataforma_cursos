@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Curso
 from django.views.generic import TemplateView, ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -19,12 +20,12 @@ class Homepage(TemplateView):
 #    return render(request, 'homecursos.html', context)
 
 
-class Homecursos(ListView):
+class Homecursos(LoginRequiredMixin, ListView):
     template_name = 'homecursos.html'
     model = Curso
     # object_list -> lista de itens do modelo
 
-class Detalhescurso(DetailView):
+class Detalhescurso(LoginRequiredMixin, DetailView):
     template_name = 'detalhescurso.html'
     model = Curso
     # object -> 1 item do nosso modelo
@@ -50,7 +51,7 @@ class Detalhescurso(DetailView):
         context['cursos_relacionados'] = cursos_relacionados
         return context
 
-class Pesquisacurso(ListView):
+class Pesquisacurso(LoginRequiredMixin, ListView):
     template_name = 'pesquisa.html'
     model = Curso
 
