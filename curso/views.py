@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Curso
 from django.views.generic import TemplateView, ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -10,6 +10,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class Homepage(TemplateView):
     template_name = 'homepage.html'
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated: # usuário está autenticado:
+            return redirect('curso:homecursos') # redireciona para a homefilmes
+        else:
+
+            return super().get(request, *args, **kwargs)# redirecionando para a homepage
 
 
 #url - view - html
@@ -24,6 +31,9 @@ class Homecursos(LoginRequiredMixin, ListView):
     template_name = 'homecursos.html'
     model = Curso
     # object_list -> lista de itens do modelo
+
+
+
 
 class Detalhescurso(LoginRequiredMixin, DetailView):
     template_name = 'detalhescurso.html'
