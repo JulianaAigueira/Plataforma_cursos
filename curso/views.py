@@ -36,6 +36,8 @@ class Detalhescurso(DetailView):
         curso.visualizacoes += 1
         # salvar
         curso.save()
+        usuario = request.user
+        usuario.curso_vistos.add(curso)
 
         return super().get(request, *args, **kwargs) # redireciona o usuario para a url final
 
