@@ -47,3 +47,16 @@ class Detalhescurso(DetailView):
         cursos_relacionados = Curso.objects.filter(categoria=self.get_object().categoria)[0:5]
         context['cursos_relacionados'] = cursos_relacionados
         return context
+
+class Pesquisacurso(ListView):
+    template_name = 'pesquisa.html'
+    model = Curso
+
+    def get_queryset(self):
+        termo_pesquisa = self.request.GET.get('query')
+        if termo_pesquisa:
+            object_list = Curso.objects.filter(titulo__icontains=termo_pesquisa)
+            return object_list
+        else:
+            return None
+
