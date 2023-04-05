@@ -73,3 +73,5 @@ class Pesquisacurso(LoginRequiredMixin, ListView):
         else:
             return None
 
+class Paginaperfil(LoginRequiredMixin, TemplateView):
+    template_name = 'editarperfil.html'
