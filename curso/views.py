@@ -1,6 +1,7 @@
-from django.shortcuts import render,redirect
-from .models import Curso
-from django.views.generic import TemplateView, ListView, DetailView
+from django.shortcuts import render,redirect, reverse
+from .models import Curso, Usuario
+from .forms import CriarContaForm, FormHomepage
+from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -8,15 +9,25 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 #def homepage(request):
 #    return render(request, 'homepage.html')
 
-class Homepage(TemplateView):
+class Homepage(FormView):
     template_name = 'homepage.html'
+    form_class = FormHomepage
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated: # usuário está autenticado:
-            return redirect('curso:homecursos') # redireciona para a homefilmes
+            return redirect('curso:homecursos') # redireciona para a homecursos
         else:
 
             return super().get(request, *args, **kwargs)# redirecionando para a homepage
+
+    def get_success_url(self):
+        email = self.request.POST.get('email')
+        usuarios = Usuario.objects.filter(email=email)
+        if usuarios:
+            return reverse('curso:login')
+        else:
+            return reverse('curso:criarconta')
+
 
 
 #url - view - html
@@ -77,5 +88,13 @@ class Paginaperfil(LoginRequiredMixin, TemplateView):
     template_name = 'editarperfil.html'
 
 
-class Criarconta(TemplateView):
+class Criarconta(FormView):
     template_name = 'criarconta.html'
+    form_class = CriarContaForm
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('curso:login')

@@ -1,11 +1,34 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block titulo %}
 Criar Conta
 {% endblock %}
 
+
 {% block content %}
-  Página de Criar Conta
+<header class="min-h-screen bg-black bg-opacity-75 bg-blend-overlay showcase border-gray-600 border-b-8 flex justify-center items-center bg-no-repeat"  style="background-image: url('{% static 'images/fundo.png' %}');">
+        <div class="z-10 h-full py-32 md:py-0 text-gray-100 text-center flex items-center flex-col">
+            <form method="post">
+              {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Crie uma conta para continuar</legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <button class="bg-red-600 py-1 px-3 text-white w-full md:text-lg rounded-md" type="submit">Criar Conta</button>
+            </form>
+
+        </div>
+    </header>
+
+    <footer class=" px-5 py-10 ">
+        <ul class="flex justify-between items-center">
+
+            <li>&copy; 2023</li>
+            <li> Feito com Python (Django)</li>
+            <li>Juliana Aigueira</li>
+        </ul>
+    </footer>
 
 {% endblock %}
